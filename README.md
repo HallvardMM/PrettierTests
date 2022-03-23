@@ -3,17 +3,21 @@
 Tests to check how well Prettier scales with increasing file size and number of files. Used for essay 4 in IN4315: Software Architecture
 
 ## Info
+
 OBS!: If you use vscode with the Prettier extension you can turn off formatting in this project by clicking "Disable (workspace)" in the settings menu when searching for Prettier in the extensions marketplace.
 
 Run all scripts from the project root
 
 ## Prerequisite
+
 - Node
 - Npm
 - (Bash for running helping scripts)
 
 ## Specs
+
 The tests was ran on this computer:
+
 - System: LENOVO_MT_20NX_BU_Think_FM_ThinkPad T490s
 - Processor: Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz, 1800 Mhz, 4 cores, 8 logical processors
 - RAM: 16,0 GB
@@ -22,11 +26,15 @@ The tests was ran on this computer:
 - npm/npx: v8.5.0
 
 ## About the tests
+
 To have some consistency in the project we made Prettier format the code line:
+
 ```Javascript
 var option = {Hello: "reader", This: { is: "a", weird: "formatted", text: "!",},};
 ```
+
 which should turn into:
+
 ```Javascript
 var option = {
   Hello: "reader",
@@ -36,6 +44,7 @@ var option = {
 
 Also noted that calling `time` before test shows that Prettier uses more time than reported.
 (See relevant Prettier [issue](https://github.com/prettier/prettier/issues/3386))
+
 ```shell
 $ time npx prettier --write LargeFile/large.js
 LargeFile\large.js 4190ms
@@ -45,13 +54,13 @@ user    0m0.061s
 sys     0m0.120s
 ```
 
-## Get started 
+## Get started
 
 Run: `npm install`
 
 ## Large file
 
-Create large file can be done manually by copy paste code in file or running bash script: 
+Create large file can be done manually by copy paste code in file or running bash script:
 
 `./Scripts/createLargeFile.sh numberOfLines`
 
@@ -59,23 +68,47 @@ Example:
 
 `./Scripts/createLargeFile.sh 100`
 
-Check large file: 
+Check large file:
 
-`npx prettier --write LargeFile/large.js`
+`time npx prettier --write LargeFile/large.js`
 
 ### Test results
 
-1000 lines of code: 
+100 lines of code:
+
 ```
 $ time npx prettier --write LargeFile/large.js
-LargeFile\large.js 1630ms
+LargeFile\large.js 183ms
 
-real    0m6.164s
-user    0m0.137s
-sys     0m0.276s
+real    0m1.925s
+user    0m0.030s
+sys     0m0.167s
 ```
 
-10000 lines of code: 
+1000 lines of code:
+
+```
+$ time npx prettier --write LargeFile/large.js
+LargeFile\large.js 591ms
+
+real    0m2.268s
+user    0m0.090s
+sys     0m0.122s
+```
+
+2000 lines of code:
+
+```
+$ time npx prettier --write LargeFile/large.js
+LargeFile\large.js 843ms
+
+real    0m2.584s
+user    0m0.060s
+sys     0m0.105s
+```
+
+10000 lines of code:
+
 ```
 $ time npx prettier --write LargeFile/large.js
 LargeFile\large.js 5989ms
@@ -85,7 +118,8 @@ user    0m0.167s
 sys     0m0.540s
 ```
 
-100000 lines of code: 
+100000 lines of code:
+
 ```
 $ time npx prettier --write LargeFile/large.js
 LargeFile\large.js 49165ms
@@ -95,7 +129,8 @@ user    0m0.092s
 sys     0m0.276s
 ```
 
-200000 lines of code: 
+200000 lines of code:
+
 ```
 $ time npx prettier --write LargeFile/large.js
 LargeFile\large.js 199496ms
@@ -105,7 +140,8 @@ user    0m0.136s
 sys     0m0.277s
 ```
 
-300000 lines of code: 
+300000 lines of code:
+
 ```
 npx prettier --write LargeFile/large.js
 LargeFile\large.js
@@ -142,7 +178,7 @@ FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memo
 
 ## Many files
 
-Creating many files can be done manually or running: 
+Creating many files can be done manually or running:
 
 `./Scripts/createManyFiles.sh numberOfFiles`
 
@@ -150,11 +186,12 @@ Example:
 
 `./Scripts/createManyFiles.sh 100`
 
-Check run time for many files: 
+Check run time for many files:
 
 `npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh`
 
-100 files one line of javascript code: 
+100 files one line of javascript code:
+
 ```
 $ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
 Time used by Prettier: 823ms
@@ -164,7 +201,8 @@ user    0m2.846s
 sys     0m7.250s
 ```
 
-1000 files one line of javascript code: 
+1000 files one line of javascript code:
+
 ```
 $ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
 sum: '=': No such file or directory
@@ -176,7 +214,8 @@ user    0m29.117s
 sys     1m14.566s
 ```
 
-2000 files one line of javascript code:  
+2000 files one line of javascript code:
+
 ```
 $ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
 Time used by Prettier: 7745ms
@@ -186,7 +225,8 @@ user    1m38.698s
 sys     3m57.898s
 ```
 
-10000 files one line of javascript code:  
+10000 files one line of javascript code:
+
 ```
 $ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
 Time used by Prettier: 44522ms
@@ -198,7 +238,7 @@ sys     18m43.688s
 
 ## Many different files
 
-Creating many different files can be done manually or running: 
+Creating many different files can be done manually or running:
 
 `./Scripts/createManyDifferentFiles.sh numberOfFilesTimesFive`
 
@@ -208,11 +248,12 @@ Example:
 
 OBS! It will create five files for each number
 
-Check run time for many files: 
+Check run time for many files:
 
 `npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh`
 
-100 files one line of js, css, json, md and ts code: 
+100 files one line of js, css, json, md and ts code:
+
 ```
 $ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
 Time used by Prettier: 2153ms
@@ -222,7 +263,8 @@ user    0m4.763s
 sys     0m10.668s
 ```
 
-1000 files one line of js, css, json, md and ts code: 
+1000 files one line of js, css, json, md and ts code:
+
 ```
 $ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
 sum: '=': No such file or directory
@@ -234,7 +276,8 @@ user    0m50.611s
 sys     2m3.707s
 ```
 
-2000 files one line of js, css, json, md and ts code: 
+2000 files one line of js, css, json, md and ts code:
+
 ```
 $ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
 Time used by Prettier: 10228ms
@@ -244,7 +287,8 @@ user    1m42.507s
 sys     4m3.508s
 ```
 
-10000 files one line of js, css, json, md and ts code: 
+10000 files one line of js, css, json, md and ts code:
+
 ```
 $ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
 sum: '=': No such file or directory
