@@ -67,22 +67,42 @@ Check large file:
 
 1000 lines of code: 
 ```
-npx prettier --write LargeFile/large.js LargeFile\large.js 1028ms
+$ time npx prettier --write LargeFile/large.js
+LargeFile\large.js 1630ms
+
+real    0m6.164s
+user    0m0.137s
+sys     0m0.276s
 ```
 
 10000 lines of code: 
 ```
-npx prettier --write LargeFile/large.js LargeFile\large.js 3970ms
+$ time npx prettier --write LargeFile/large.js
+LargeFile\large.js 5989ms
+
+real    0m11.836s
+user    0m0.167s
+sys     0m0.540s
 ```
 
 100000 lines of code: 
 ```
-npx prettier --write LargeFile/large.js LargeFile\large.js 38432ms
+$ time npx prettier --write LargeFile/large.js
+LargeFile\large.js 49165ms
+
+real    0m54.162s
+user    0m0.092s
+sys     0m0.276s
 ```
 
 200000 lines of code: 
 ```
-npx prettier --write LargeFile/large.js LargeFile\large.js 224736ms
+$ time npx prettier --write LargeFile/large.js
+LargeFile\large.js 199496ms
+
+real    3m25.324s
+user    0m0.136s
+sys     0m0.277s
 ```
 
 300000 lines of code: 
@@ -136,26 +156,44 @@ Check run time for many files:
 
 100 files one line of javascript code: 
 ```
-npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh 
-Time used by Prettier: 786ms
+$ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
+Time used by Prettier: 823ms
+
+real    0m12.816s
+user    0m2.846s
+sys     0m7.250s
 ```
 
 1000 files one line of javascript code: 
 ```
-npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh 
-Time used by Prettier: 4236ms
+$ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
+sum: '=': No such file or directory
+sum: 0: No such file or directory
+Time used by Prettier: 5116ms
+
+real    1m37.498s
+user    0m29.117s
+sys     1m14.566s
 ```
 
 2000 files one line of javascript code:  
 ```
-npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh 
-Time used by Prettier: 7993ms
+$ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
+Time used by Prettier: 7745ms
+
+real    5m16.821s
+user    1m38.698s
+sys     3m57.898s
 ```
 
 10000 files one line of javascript code:  
 ```
-npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh 
-Time used by Prettier: 33095ms
+$ time npx prettier --write ManyFiles | ./Scripts/countManyFiles.sh
+Time used by Prettier: 44522ms
+
+real    23m56.831s
+user    7m30.902s
+sys     18m43.688s
 ```
 
 ## Many different files
@@ -176,24 +214,44 @@ Check run time for many files:
 
 100 files one line of js, css, json, md and ts code: 
 ```
-npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
-Time used by Prettier: 1622ms
+$ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
+Time used by Prettier: 2153ms
+
+real    0m19.480s
+user    0m4.763s
+sys     0m10.668s
 ```
 
 1000 files one line of js, css, json, md and ts code: 
 ```
-npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
-Time used by Prettier: 5479ms
+$ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
+sum: '=': No such file or directory
+sum: 0: No such file or directory
+Time used by Prettier: 5973ms
+
+real    2m44.658s
+user    0m50.611s
+sys     2m3.707s
 ```
 
 2000 files one line of js, css, json, md and ts code: 
 ```
-npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
-Time used by Prettier: 10255ms
+$ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
+Time used by Prettier: 10228ms
+
+real    5m20.225s
+user    1m42.507s
+sys     4m3.508s
 ```
 
 10000 files one line of js, css, json, md and ts code: 
 ```
-npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
-Time used by Prettier: 36302ms
+$ time npx prettier --write ManyDifferentFiles | ./Scripts/countManyFiles.sh
+sum: '=': No such file or directory
+sum: 0: No such file or directory
+Time used by Prettier: 52160ms
+
+real    23m24.805s
+user    7m23.720s
+sys     18m22.995s
 ```
