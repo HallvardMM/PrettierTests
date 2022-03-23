@@ -2,6 +2,8 @@
 
 echo "Bash version ${BASH_VERSION}..."
 
+mkdir -p LargeFile
+
 touch ./LargeFile/large.js
 
 > ./LargeFile/large.js

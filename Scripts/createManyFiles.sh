@@ -2,6 +2,8 @@
 
 echo "Bash version ${BASH_VERSION}..."
 
+mkdir -p ManyFiles
+
 rm -rf ManyFiles/*
 
 for ((i=1;i<=$1;i++))

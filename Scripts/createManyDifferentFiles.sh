@@ -3,6 +3,8 @@
 echo "Bash version ${BASH_VERSION}..."
 echo "This creates five times as many files :)"
 
+mkdir -p ManyDifferentFiles
+
 rm -rf ManyDifferentFiles/*
 
 for ((i=1;i<=$1;i++))
